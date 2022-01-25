@@ -102,16 +102,15 @@ HAL_UART_Receive_IT(&huart1,&isr_value,1);
   /* USER CODE BEGIN WHILE */
   while (1)
   { 
-  HAL_UART_Receive_IT(&huart1,&isr_value,1);
-  HAL_UART_Transmit(&huart2,data,isr_value,1000);
+  HAL_UART_Transmit(&huart2,data,strlen(data),1000);
   HAL_Delay(2000);
 
- if ( isr_value == '1'){
+ if ( data == '1'){
    HAL_GPIO_WritePin(LD2_GPIO_Port,LD2_Pin,SET);
       HAL_Delay(1000);
       }
       
-      if ( isr_value == '0'){
+      if ( data == '0'){
    HAL_GPIO_WritePin(LD2_GPIO_Port,LD2_Pin,RESET);
       HAL_Delay(1000);
       }
